@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'maven-publish'
+}
+
+android {
+    namespace 'com.creativechaos.storedvaluewallet'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            signingConfig = signingConfigs.getByName("debug")
+
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx.v190
+//    implementation libs.androidx.appcompat
+//    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+    implementation libs.firebase.core
+    implementation libs.gson
+//    implementation files('libs/nxpnfcandroidlib-release-protected.aar')
+//    api fileTree(include: ['nxpnfcandroidlib-release-protected.aar'], dir: 'libs' )
+//    implementation project(":nxpnfcandroidlib-release-protected")
+
+
+//    implementation(libs.ktor.client.core)
+    implementation libs.ktor.client.core
+//    implementation(libs.ktor.client.android)
+    implementation libs.ktor.client.android
+//    implementation(libs.ktor.client.logging)
+    implementation libs.ktor.client.logging
+//    implementation(libs.ktor.client.content.negotiation)
+    implementation libs.ktor.client.content.negotiation
+//    implementation(libs.ktor.client.serialization)
+    implementation libs.ktor.client.serialization
+//    implementation(libs.serialization.kotlinx.json.ktor)
+    implementation libs.ktor.serialization.kotlinx.json
+//    implementation(libs.serialization.kotlinx.json.jetbrains)
+    implementation libs.kotlinx.serialization.json
+//    implementation(libs.slf4j)
+    implementation libs.slf4j.simple
+    implementation libs.jwtdecode
+
+//    implementation libs.jwtdecode
+
+    implementation project(':nxplib')
+
+
+//    api fileTree(dir: 'libs', include: ['*.aar'])
+
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.AhmadMeghaniCC'
+                artifactId = 'storedvaluewallet'
+                version = '0.0.1'
+            }
+        }
+    }
+}
+
