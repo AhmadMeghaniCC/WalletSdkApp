@@ -82,7 +82,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.AhmadMeghaniCC'
                 artifactId = 'storedvaluewallet'
-                version = '0.0.1'
+                version = '0.1.1'
             }
         }
     }
