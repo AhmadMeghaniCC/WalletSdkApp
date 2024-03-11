@@ -83,6 +83,9 @@ afterEvaluate {
                 groupId = 'com.github.AhmadMeghaniCC'
                 artifactId = 'storedvaluewallet'
                 version = '0.0.1'
+
+                // Include nxplib artifact
+                artifact(file('nxpnfcandroidlib-release-protected.aar'))
             }
         }
     }
